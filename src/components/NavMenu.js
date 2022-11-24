@@ -8,7 +8,7 @@ export const NavMenu = () => {
   return (
     <Box>
       <NavLink
-        label="this"
+        label="Merge Sort"
         component={Link}
         to="/resume/list"
         icon={<CheckupList />}

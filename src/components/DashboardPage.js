@@ -1,3 +1,4 @@
+import { Button } from "@mantine/core";
 import {
   Bar,
   BarChart,
@@ -7,9 +8,15 @@ import {
   YAxis,
 } from "recharts";
 import { useAppContext } from "../context/AppContext";
+import { mergeSort } from "../utils/MergeSort";
 
 const DashboardPage = () => {
   const { infoState } = useAppContext();
+
+  const doMergeSort = () => {
+    const res = mergeSort(infoState.array);
+    console.log(res);
+  };
 
   const data =
     infoState &&
@@ -18,24 +25,27 @@ const DashboardPage = () => {
       return { index: index, number: item };
     });
   return (
-    <ResponsiveContainer height="50%" width="100%">
-      <BarChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <YAxis />
-        <Tooltip />
-        <Bar dataKey="number" fill="#8884d8" />
-      </BarChart>
-    </ResponsiveContainer>
+    <>
+      <ResponsiveContainer height="50%" width="100%">
+        <BarChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="number" fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
+      <Button onClick={doMergeSort}>Sort</Button>
+    </>
   );
 };
 export default DashboardPage;

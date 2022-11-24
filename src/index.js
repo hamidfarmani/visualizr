@@ -1,4 +1,4 @@
-import { Center, Loader, MantineProvider } from "@mantine/core";
+import { Center, Loader } from "@mantine/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { AppContext } from "./context/AppContext";
