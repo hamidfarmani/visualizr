@@ -20,6 +20,7 @@ import { MapPin, MoodSmile, User } from "tabler-icons-react";
 import DashboardPage from "../components/DashboardPage";
 import MainHeader from "../components/MainHeader";
 import { NavMenu } from "../components/NavMenu";
+import MergeSort from "../utils/MergeSort";
 
 const AppRouter = () => {
   const theme = useMantineTheme();
@@ -135,6 +136,7 @@ const AppRouter = () => {
           >
             <Routes>
               <Route path="/" element={<DashboardPage />} exact />
+              <Route path="/merge-sort" element={<MergeSort />} exact />
             </Routes>
           </AppShell>
         </MantineProvider>

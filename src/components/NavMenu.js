@@ -10,7 +10,7 @@ export const NavMenu = () => {
       <NavLink
         label="Merge Sort"
         component={Link}
-        to="/resume/list"
+        to="/merge-sort"
         icon={<CheckupList />}
         active={location.pathname === "/resume/list"}
       />

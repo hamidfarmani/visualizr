@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MoonStars, Sun } from "tabler-icons-react";
+import { ExternalLink, MoonStars, Sun } from "tabler-icons-react";
 import { useAppContext } from "../context/AppContext";
 
 const MainHeader = ({ dark, toggleColorScheme }) => {
@@ -48,13 +48,15 @@ const MainHeader = ({ dark, toggleColorScheme }) => {
 
       <Group>
         {
-          <Anchor
-            component={Link}
-            to="/login"
-            style={{ textDecoration: "none" }}
+          <Button
+            component="a"
+            href="https://github.com/hamidfarmani/visualizr"
+            target="_blank"
+            variant="outline"
+            leftIcon={<ExternalLink size={14} />}
           >
-            <Text>To GitHub</Text>
-          </Anchor>
+            To GitHub repo
+          </Button>
         }
 
         <Tooltip
