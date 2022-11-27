@@ -1,9 +1,9 @@
 import {
   ActionIcon,
   Anchor,
-  Button,
   Container,
   Group,
+  MediaQuery,
   Slider,
   Text,
   Title,
@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink, MoonStars, Sun } from "tabler-icons-react";
+import { Check, MoonStars, Sun } from "tabler-icons-react";
 import { useAppContext } from "../context/AppContext";
 
 const MainHeader = ({ dark, toggleColorScheme }) => {
@@ -24,11 +24,13 @@ const MainHeader = ({ dark, toggleColorScheme }) => {
 
   return (
     <Group position="apart" style={{ width: "100%" }}>
-      <Group>
-        <Anchor component={Link} to="/" style={{ textDecoration: "none" }}>
-          <Title order={2}>Visualizr</Title>
-        </Anchor>
-      </Group>
+      <MediaQuery smallerThan="lg" styles={{ display: "none" }}>
+        <Group position="left">
+          <Anchor component={Link} to="/" style={{ textDecoration: "none" }}>
+            <Title order={2}>Visualizr</Title>
+          </Anchor>
+        </Group>
+      </MediaQuery>
 
       <Group position="center">
         <Container size={400}>
@@ -43,22 +45,12 @@ const MainHeader = ({ dark, toggleColorScheme }) => {
           />
         </Container>
 
-        <Button onClick={() => onGenerateClick()}>Generate new numbers</Button>
+        <ActionIcon variant="subtle" onClick={() => onGenerateClick()}>
+          <Check size={20} />
+        </ActionIcon>
       </Group>
 
-      <Group>
-        {
-          <Button
-            component="a"
-            href="https://github.com/hamidfarmani/visualizr"
-            target="_blank"
-            variant="outline"
-            leftIcon={<ExternalLink size={14} />}
-          >
-            To GitHub repo
-          </Button>
-        }
-
+      <Group position="right">
         <Tooltip
           label={dark ? "Light mode" : "Dark mode"}
           radius="md"

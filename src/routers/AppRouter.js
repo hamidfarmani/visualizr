@@ -9,28 +9,29 @@ import {
   MediaQuery,
   Menu,
   Navbar,
+  NavLink,
   ScrollArea,
   useMantineTheme,
 } from "@mantine/core";
-import { useColorScheme } from "@mantine/hooks";
 
 import { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { MapPin, MoodSmile, User } from "tabler-icons-react";
+import { ExternalLink, MapPin, MoodSmile, User } from "tabler-icons-react";
 import DashboardPage from "../components/DashboardPage";
 import MainHeader from "../components/MainHeader";
 import { NavMenu } from "../components/NavMenu";
 import Visualizr from "../components/Visualizr";
-import MergeSort from "../utils/MergeSort";
 
 const AppRouter = () => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const preferredColorScheme = useColorScheme();
 
-  const [colorScheme, setColorScheme] = useState(preferredColorScheme);
+  const [colorScheme, setColorScheme] = useState(
+    localStorage.getItem("color") ? localStorage.getItem("color") : "dark"
+  );
 
   const toggleColorScheme = () => {
+    localStorage.color = colorScheme === "dark" ? "light" : "dark";
     setColorScheme(colorScheme === "dark" ? "light" : "dark");
   };
 
@@ -107,6 +108,19 @@ const AppRouter = () => {
                 <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
                   <NavMenu />
                 </Navbar.Section>
+
+                <Divider my="sm" />
+
+                <Navbar.Section>
+                  <NavLink
+                    label="To GitHub repo"
+                    component="a"
+                    href="https://github.com/hamidfarmani/visualizr"
+                    target="_blank"
+                    variant="outline"
+                    icon={<ExternalLink />}
+                  />
+                </Navbar.Section>
               </Navbar>
             }
             header={
@@ -136,7 +150,7 @@ const AppRouter = () => {
             }
           >
             <Routes>
-              <Route path="/" element={<DashboardPage />} exact />
+              <Route path="/dashboard" element={<DashboardPage />} exact />
               <Route path="/visualizr" element={<Visualizr />} exact />
             </Routes>
           </AppShell>
