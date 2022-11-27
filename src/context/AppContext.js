@@ -24,11 +24,13 @@ export const AppContext = ({ children }) => {
 
   const generateNewArray = (arraySize) => {
     const array = Array.from({ length: arraySize }, () =>
-      Math.floor(Math.random() * 300)
+      //min = 10 (just to be visible in the chart)
+      //max = 500
+      Math.floor(10 + Math.random() * (500 - 10 + 1))
     );
 
     const objectArray = array.map((item, index) => {
-      return { index: index, number: item };
+      return { index: index, number: item, color: "purple" };
     });
 
     dispatch({
@@ -41,10 +43,14 @@ export const AppContext = ({ children }) => {
   };
 
   const setArray = (modifiedArray) => {
+    const objectArray = modifiedArray.map((item, index) => {
+      return { index: index, number: item, color: "purple" };
+    });
     dispatch({
       type: "SetArray",
       payload: {
         array: modifiedArray,
+        objectArray: objectArray,
       },
     });
   };

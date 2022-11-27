@@ -20,6 +20,7 @@ import { MapPin, MoodSmile, User } from "tabler-icons-react";
 import DashboardPage from "../components/DashboardPage";
 import MainHeader from "../components/MainHeader";
 import { NavMenu } from "../components/NavMenu";
+import Visualizr from "../components/Visualizr";
 import MergeSort from "../utils/MergeSort";
 
 const AppRouter = () => {
@@ -67,35 +68,35 @@ const AppRouter = () => {
                 width={{ sm: 200, lg: 300 }}
               >
                 <Navbar.Section mt="xs">
-                  <Menu shadow="md" size="xl" withArrow placement="center">
+                  <Menu shadow="md" size="xl" placement="center">
                     <Menu.Target>
-                      <Button>This button</Button>
+                      <Button>Something useful</Button>
                     </Menu.Target>
                     <Menu.Dropdown>
                       <Menu.Label>Actions</Menu.Label>
 
                       <Menu.Item
                         component={Link}
-                        to={"/edit/user/personal"}
+                        to={"/action1"}
                         icon={<User size={14} />}
                       >
-                        Personal information
+                        Action 1
                       </Menu.Item>
 
                       <Menu.Item
                         component={Link}
-                        to={"/edit/user/address"}
+                        to={"/action2"}
                         icon={<MapPin size={14} />}
                       >
-                        Living address
+                        Action 2
                       </Menu.Item>
 
                       <Menu.Item
                         component={Link}
-                        to={"/edit/user/about"}
+                        to={"/action3"}
                         icon={<MoodSmile size={14} />}
                       >
-                        About me
+                        Action 3
                       </Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
@@ -136,7 +137,7 @@ const AppRouter = () => {
           >
             <Routes>
               <Route path="/" element={<DashboardPage />} exact />
-              <Route path="/merge-sort" element={<MergeSort />} exact />
+              <Route path="/visualizr" element={<Visualizr />} exact />
             </Routes>
           </AppShell>
         </MantineProvider>

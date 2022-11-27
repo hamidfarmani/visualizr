@@ -1,83 +1,65 @@
-import { Button } from "@mantine/core";
-import { useForceUpdate } from "@mantine/hooks";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  YAxis,
-} from "recharts";
-import { useAppContext } from "../context/AppContext";
+export function mergeSortAlgorithm(array) {
+  const steps = [];
+  mergeSort(array, [], steps, 0, array.length - 1);
 
-const MergeSort = () => {
-  const { infoState, setArray } = useAppContext();
-  const forceUpdate = useForceUpdate();
+  return steps;
+}
 
-  const doMergeSort = () => {
-    const res = mergeSort(infoState.array);
-    console.log(res);
-  };
+function mergeSort(array, temp, steps, leftStart, rightEnd) {
+  if (leftStart >= rightEnd) return;
+  const midIndex = Math.floor((leftStart + rightEnd) / 2);
+  mergeSort(array, temp, steps, leftStart, midIndex);
+  mergeSort(array, temp, steps, midIndex + 1, rightEnd);
+  mergeHalves(array, temp, steps, leftStart, rightEnd);
+}
 
-  return (
-    <>
-      <ResponsiveContainer height="50%" width="100%">
-        <BarChart
-          width={500}
-          height={300}
-          data={infoState && infoState.objectArray}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="number" fill="#8884d8" />
-        </BarChart>
-      </ResponsiveContainer>
-      <Button onClick={doMergeSort}>Sort</Button>
-    </>
-  );
+function mergeHalves(array, temp, steps, leftStart, rightEnd) {
+  const leftEnd = Math.floor((leftStart + rightEnd) / 2);
+  const rightStart = leftEnd + 1;
 
-  function mergeSort(array) {
-    if (array.length === 1) return array;
-    const midIndex = Math.floor(array.length / 2);
-    const leftSide = array.slice(0, midIndex);
-    const rightSide = array.slice(midIndex);
+  let currentIndex = leftStart;
+  let leftIndex = leftStart;
+  let rightIndex = rightStart;
 
-    return mergeSortedArrays(mergeSort(leftSide), mergeSort(rightSide));
-  }
+  while (leftIndex <= leftEnd && rightIndex <= rightEnd) {
+    steps.push([leftIndex, rightIndex]);
+    steps.push([leftIndex, rightIndex]);
 
-  function mergeSortedArrays(leftSide, rightSide) {
-    let sortedArray = [];
-    let leftIndex = 0;
-    let rightIndex = 0;
+    if (array[leftIndex] <= array[rightIndex]) {
+      steps.push([currentIndex, array[leftIndex]]);
 
-    while (leftIndex < leftSide.length && rightIndex < rightSide.length) {
-      if (leftSide[leftIndex] < rightSide[rightIndex]) {
-        sortedArray.push(leftSide[leftIndex]);
-        leftIndex++;
-      } else {
-        sortedArray.push(rightSide[rightIndex]);
-        rightIndex++;
-      }
-    }
-
-    while (leftIndex < leftSide.length) {
-      sortedArray.push(leftSide[leftIndex]);
+      temp[currentIndex] = array[leftIndex];
       leftIndex++;
-    }
+    } else {
+      steps.push([currentIndex, array[rightIndex]]);
 
-    while (rightIndex < rightSide.length) {
-      sortedArray.push(rightSide[rightIndex]);
+      temp[currentIndex] = array[rightIndex];
       rightIndex++;
     }
-
-    return sortedArray;
+    currentIndex++;
   }
-};
-export default MergeSort;
+
+  while (leftIndex <= leftEnd) {
+    steps.push([leftIndex, leftIndex]);
+    steps.push([leftIndex, leftIndex]);
+    steps.push([currentIndex, array[leftIndex]]);
+
+    temp[currentIndex] = array[leftIndex];
+    leftIndex++;
+    currentIndex++;
+  }
+
+  while (rightIndex <= rightEnd) {
+    steps.push([rightIndex, rightIndex]);
+    steps.push([rightIndex, rightIndex]);
+    steps.push([currentIndex, array[rightIndex]]);
+
+    temp[currentIndex] = array[rightIndex];
+    rightIndex++;
+    currentIndex++;
+  }
+
+  for (let i = 0; i < temp.length; i++) {
+    array[i] = temp[i];
+  }
+}
