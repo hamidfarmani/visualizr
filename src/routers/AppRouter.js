@@ -17,10 +17,11 @@ import {
 import { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ExternalLink, MapPin, MoodSmile, User } from "tabler-icons-react";
+import BubbleSortPage from "../components/BubbleSortPage";
 import DashboardPage from "../components/DashboardPage";
 import MainHeader from "../components/MainHeader";
+import MergeSortPage from "../components/MergeSortPage";
 import { NavMenu } from "../components/NavMenu";
-import Visualizr from "../components/Visualizr";
 
 const AppRouter = () => {
   const theme = useMantineTheme();
@@ -151,7 +152,8 @@ const AppRouter = () => {
           >
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} exact />
-              <Route path="/visualizr" element={<Visualizr />} exact />
+              <Route path="/merge-sort" element={<MergeSortPage />} exact />
+              <Route path="/bubble-sort" element={<BubbleSortPage />} exact />
             </Routes>
           </AppShell>
         </MantineProvider>
