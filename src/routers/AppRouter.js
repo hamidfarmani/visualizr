@@ -19,6 +19,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ExternalLink, MapPin, MoodSmile, User } from "tabler-icons-react";
 import BubbleSortPage from "../components/BubbleSortPage";
 import DashboardPage from "../components/DashboardPage";
+import InsertionSortPage from "../components/InsertionSortPage";
 import MainHeader from "../components/MainHeader";
 import MergeSortPage from "../components/MergeSortPage";
 import { NavMenu } from "../components/NavMenu";
@@ -154,6 +155,11 @@ const AppRouter = () => {
               <Route path="/dashboard" element={<DashboardPage />} exact />
               <Route path="/merge-sort" element={<MergeSortPage />} exact />
               <Route path="/bubble-sort" element={<BubbleSortPage />} exact />
+              <Route
+                path="/insertion-sort"
+                element={<InsertionSortPage />}
+                exact
+              />
             </Routes>
           </AppShell>
         </MantineProvider>

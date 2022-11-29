@@ -2,10 +2,10 @@ import { Button } from "@mantine/core";
 import { useInterval } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { bubbleSortAlgorithm } from "../utils/BubbleSort";
+import { insertionSortAlgorithm } from "../utils/InsertionSort";
 import Visualize from "./Visualizr";
 
-const BubbleSortPage = () => {
+const InsertionSortPage = () => {
   const { infoState } = useAppContext();
 
   const [data, setData] = useState([]);
@@ -23,9 +23,9 @@ const BubbleSortPage = () => {
     }
   }, [step]);
 
-  const doBubbleSort = () => {
+  const doInsertionSort = () => {
     setData([...infoState.objectArray]);
-    const steps = bubbleSortAlgorithm(infoState.array);
+    const steps = insertionSortAlgorithm(infoState.array);
     setSteps(steps);
     setStep(0);
     interval.start();
@@ -54,7 +54,7 @@ const BubbleSortPage = () => {
   return (
     <>
       <Visualize data={infoState.objectArray} />
-      <Button fullWidth onClick={doBubbleSort}>
+      <Button fullWidth onClick={doInsertionSort}>
         Sort
       </Button>
       {infoState &&
@@ -63,4 +63,4 @@ const BubbleSortPage = () => {
     </>
   );
 };
-export default BubbleSortPage;
+export default InsertionSortPage;

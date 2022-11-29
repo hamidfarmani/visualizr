@@ -1,6 +1,11 @@
 import { Box, NavLink } from "@mantine/core";
 import { Link, useLocation } from "react-router-dom";
-import { ChartBubble, LayoutDashboard, SquareHalf } from "tabler-icons-react";
+import {
+  ChartBubble,
+  ColumnInsertRight,
+  LayoutDashboard,
+  SquareHalf,
+} from "tabler-icons-react";
 
 export const NavMenu = () => {
   const location = useLocation();
@@ -27,6 +32,13 @@ export const NavMenu = () => {
         to="/bubble-sort"
         icon={<ChartBubble />}
         active={location.pathname === "/bubble-sort"}
+      />
+      <NavLink
+        label="Insertion Sort"
+        component={Link}
+        to="/insertion-sort"
+        icon={<ColumnInsertRight />}
+        active={location.pathname === "/insertion-sort"}
       />
     </Box>
   );
