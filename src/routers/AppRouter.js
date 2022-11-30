@@ -23,6 +23,7 @@ import InsertionSortPage from "../components/InsertionSortPage";
 import MainHeader from "../components/MainHeader";
 import MergeSortPage from "../components/MergeSortPage";
 import { NavMenu } from "../components/NavMenu";
+import SelectionSortPage from "../components/SelectionSortPage";
 
 const AppRouter = () => {
   const theme = useMantineTheme();
@@ -155,6 +156,11 @@ const AppRouter = () => {
               <Route path="/dashboard" element={<DashboardPage />} exact />
               <Route path="/merge-sort" element={<MergeSortPage />} exact />
               <Route path="/bubble-sort" element={<BubbleSortPage />} exact />
+              <Route
+                path="/selection-sort"
+                element={<SelectionSortPage />}
+                exact
+              />
               <Route
                 path="/insertion-sort"
                 element={<InsertionSortPage />}

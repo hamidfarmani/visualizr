@@ -4,6 +4,7 @@ import {
   ChartBubble,
   ColumnInsertRight,
   LayoutDashboard,
+  Select,
   SquareHalf,
 } from "tabler-icons-react";
 
@@ -39,6 +40,13 @@ export const NavMenu = () => {
         to="/insertion-sort"
         icon={<ColumnInsertRight />}
         active={location.pathname === "/insertion-sort"}
+      />
+      <NavLink
+        label="Selection Sort"
+        component={Link}
+        to="/selection-sort"
+        icon={<Select />}
+        active={location.pathname === "/selection-sort"}
       />
     </Box>
   );
