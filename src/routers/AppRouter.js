@@ -1,22 +1,15 @@
 import {
   AppShell,
   Burger,
-  Button,
   ColorSchemeProvider,
-  Divider,
   Header,
   MantineProvider,
   MediaQuery,
-  Menu,
-  Navbar,
-  NavLink,
-  ScrollArea,
   useMantineTheme,
 } from "@mantine/core";
 
 import { useState } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { ExternalLink, MapPin, MoodSmile, User } from "tabler-icons-react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BubbleSortPage from "../components/BubbleSortPage";
 import DashboardPage from "../components/DashboardPage";
 import InsertionSortPage from "../components/InsertionSortPage";
@@ -64,68 +57,7 @@ const AppRouter = () => {
             navbarOffsetBreakpoint="sm"
             asideOffsetBreakpoint="sm"
             fixed
-            navbar={
-              <Navbar
-                p="md"
-                hiddenBreakpoint="sm"
-                hidden={!opened}
-                width={{ sm: 200, lg: 300 }}
-              >
-                <Navbar.Section mt="xs">
-                  <Menu shadow="md" size="xl" placement="center">
-                    <Menu.Target>
-                      <Button>Something useful</Button>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                      <Menu.Label>Actions</Menu.Label>
-
-                      <Menu.Item
-                        component={Link}
-                        to={"/action1"}
-                        icon={<User size={14} />}
-                      >
-                        Action 1
-                      </Menu.Item>
-
-                      <Menu.Item
-                        component={Link}
-                        to={"/action2"}
-                        icon={<MapPin size={14} />}
-                      >
-                        Action 2
-                      </Menu.Item>
-
-                      <Menu.Item
-                        component={Link}
-                        to={"/action3"}
-                        icon={<MoodSmile size={14} />}
-                      >
-                        Action 3
-                      </Menu.Item>
-                    </Menu.Dropdown>
-                  </Menu>
-                </Navbar.Section>
-
-                <Divider my="sm" />
-
-                <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-                  <NavMenu />
-                </Navbar.Section>
-
-                <Divider my="sm" />
-
-                <Navbar.Section>
-                  <NavLink
-                    label="To GitHub repo"
-                    component="a"
-                    href="https://github.com/hamidfarmani/visualizr"
-                    target="_blank"
-                    variant="outline"
-                    icon={<ExternalLink />}
-                  />
-                </Navbar.Section>
-              </Navbar>
-            }
+            navbar={<NavMenu opened={opened} />}
             header={
               <Header height={70} p="md" background={theme.colors.gray[6]}>
                 <div
