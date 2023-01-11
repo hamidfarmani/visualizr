@@ -10,13 +10,14 @@ import {
   Tooltip,
 } from "@mantine/core";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Check, MoonStars, Sun } from "tabler-icons-react";
 import { useAppContext } from "../context/AppContext";
 
 const MainHeader = ({ dark, toggleColorScheme }) => {
   const [arraySize, setArraySize] = useState(20);
   const infoState = useAppContext();
+  const location = useLocation();
 
   const onGenerateClick = () => {
     infoState.generateNewArray(arraySize);
@@ -32,23 +33,25 @@ const MainHeader = ({ dark, toggleColorScheme }) => {
         </Group>
       </MediaQuery>
 
-      <Group position="center">
-        <Container size={400}>
-          <Text>Select the size of array</Text>
-          <Slider
-            min={4}
-            max={100}
-            radius="lg"
-            value={arraySize}
-            onChange={setArraySize}
-            onChangeEnd={setArraySize}
-          />
-        </Container>
+      {location && location.pathname.includes("sort") && (
+        <Group position="center">
+          <Container size={400}>
+            <Text>Select the size of array</Text>
+            <Slider
+              min={4}
+              max={100}
+              radius="lg"
+              value={arraySize}
+              onChange={setArraySize}
+              onChangeEnd={setArraySize}
+            />
+          </Container>
 
-        <ActionIcon variant="subtle" onClick={() => onGenerateClick()}>
-          <Check size={20} />
-        </ActionIcon>
-      </Group>
+          <ActionIcon variant="subtle" onClick={() => onGenerateClick()}>
+            <Check size={20} />
+          </ActionIcon>
+        </Group>
+      )}
 
       <Group position="right">
         <Tooltip

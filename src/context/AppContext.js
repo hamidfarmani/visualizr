@@ -24,8 +24,6 @@ export const AppContext = ({ children }) => {
 
   const generateNewArray = (arraySize) => {
     const array = Array.from({ length: arraySize }, () =>
-      //min = 10 (just to be visible in the chart)
-      //max = 500
       Math.floor(10 + Math.random() * (500 - 10 + 1))
     );
 

@@ -85,6 +85,7 @@ const AppRouter = () => {
             }
           >
             <Routes>
+              <Route path="/" element={<DashboardPage />} exact />
               <Route path="/dashboard" element={<DashboardPage />} exact />
               <Route path="/merge-sort" element={<MergeSortPage />} exact />
               <Route path="/bubble-sort" element={<BubbleSortPage />} exact />

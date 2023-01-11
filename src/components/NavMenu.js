@@ -6,12 +6,9 @@ import {
   ExternalLink,
   LayoutDashboard,
   Select,
-  Selector,
   SquareHalf,
 } from "tabler-icons-react";
-import image from "../styles/images/profile.jpg";
 import { navStyles } from "../styles/navStyles";
-import UserButton from "./UserButton";
 
 export const NavMenu = ({ opened }) => {
   const location = useLocation();
@@ -25,15 +22,6 @@ export const NavMenu = ({ opened }) => {
       hiddenBreakpoint="sm"
       hidden={!opened}
     >
-      <Navbar.Section className={classes.section}>
-        <UserButton
-          image={image}
-          name="Hamid Farmani"
-          email="hamidfarmani1@gmail.com"
-          icon={<Selector size={14} stroke={1.5} />}
-        />
-      </Navbar.Section>
-
       <Navbar.Section className={classes.section}>
         <NavLink
           label="Dashboard"
