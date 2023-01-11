@@ -12,10 +12,14 @@ const InsertionSortPage = () => {
   const [steps, setSteps] = useState([]);
 
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 50);
+  const interval = useInterval(() => setStep((s) => s + 1), 70);
 
   useEffect(() => {
-    const nextData = data && data.length > 0 && apply(steps[step], data);
+    setData([...infoState.objectArray]);
+  }, [infoState.objectArray]);
+
+  useEffect(() => {
+    const nextData = apply(steps[step], data);
     setData(nextData);
     if (data === undefined) {
       interval.stop();
@@ -32,7 +36,7 @@ const InsertionSortPage = () => {
   };
 
   function apply(stepItem, toUpdate) {
-    if (stepItem === undefined) return;
+    if (stepItem === undefined || toUpdate === undefined) return;
 
     const shouldChangeColor = step % 3 !== 2;
 

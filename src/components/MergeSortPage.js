@@ -12,10 +12,10 @@ const MergeSortPage = () => {
   const [steps, setSteps] = useState([]);
 
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 50);
+  const interval = useInterval(() => setStep((s) => s + 1), 70);
 
   useEffect(() => {
-    const nextData = data && data.length > 0 && apply(steps[step], data);
+    const nextData = apply(steps[step], data);
     setData(nextData);
     if (data === undefined) {
       interval.stop();
@@ -23,39 +23,20 @@ const MergeSortPage = () => {
     }
   }, [step]);
 
+  useEffect(() => {
+    setData([...infoState.objectArray]);
+  }, [infoState.objectArray]);
+
   const doMergeSort = () => {
     setData([...infoState.objectArray]);
     const steps = mergeSortAlgorithm(infoState.array);
     setSteps(steps);
     setStep(0);
     interval.start();
-
-    // for (let i = 0; i < steps.length; i++) {
-    //   const bars = document.getElementsByClassName("bar-chart");
-    //   const shouldChangeColor = i % 3 !== 2;
-
-    //   if (shouldChangeColor) {
-    //     const [leftBarIndex, rightBarIndex] = steps[i];
-    //     const leftBarStyle = bars[leftBarIndex].style;
-    //     const rightBarStyle = bars[rightBarIndex].style;
-    //     const color = i % 3 === 0 ? "red" : "green";
-
-    //     setTimeout(() => {
-    //       leftBarStyle.backgroundColor = color;
-    //       rightBarStyle.backgroundColor = color;
-    //     }, i * 10);
-    //   } else {
-    //     setTimeout(() => {
-    //       const [index, newNumber] = steps[i];
-    //       const barStyle = bars[index].style;
-    //       barStyle.height = `${newNumber}px`;
-    //     }, i * 10);
-    //   }
-    // }
   };
 
   function apply(stepItem, toUpdate) {
-    if (stepItem === undefined) return;
+    if (stepItem === undefined || toUpdate === undefined) return;
 
     const shouldChangeColor = step % 3 !== 2;
 
@@ -76,31 +57,10 @@ const MergeSortPage = () => {
 
   return (
     <>
-      <Visualize data={infoState.objectArray} />
+      <Visualize data={data} />
       <Button fullWidth onClick={doMergeSort}>
         Sort
       </Button>
-      {infoState &&
-        infoState.objectArray &&
-        infoState.objectArray.map((item) => item.number + " ")}
-
-      {/* <Paper shadow="md" p="md">
-        <Container className="array-container">
-          {infoState &&
-            infoState.array &&
-            infoState.array.map((value, index) => (
-              <div
-                className="bar-chart"
-                key={index}
-                style={{ height: `${value}px` }}
-              ></div>
-            ))}
-        </Container>
-
-        <Button fullWidth onClick={doMergeSort}>
-          Sort
-        </Button>
-      </Paper> */}
     </>
   );
 };
