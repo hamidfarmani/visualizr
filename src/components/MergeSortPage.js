@@ -15,6 +15,14 @@ const MergeSortPage = () => {
   const interval = useInterval(() => setStep((s) => s + 1), 70);
 
   useEffect(() => {
+    if (infoState && infoState.objectArray) {
+      setData([...infoState.objectArray]);
+    } else {
+      setData([]);
+    }
+  }, [infoState.objectArray]);
+
+  useEffect(() => {
     const nextData = apply(steps[step], data);
     setData(nextData);
     if (data === undefined) {
@@ -22,10 +30,6 @@ const MergeSortPage = () => {
       setData([...infoState.objectArray]);
     }
   }, [step]);
-
-  useEffect(() => {
-    setData([...infoState.objectArray]);
-  }, [infoState.objectArray]);
 
   const doMergeSort = () => {
     setData([...infoState.objectArray]);

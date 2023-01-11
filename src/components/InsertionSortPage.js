@@ -15,7 +15,11 @@ const InsertionSortPage = () => {
   const interval = useInterval(() => setStep((s) => s + 1), 70);
 
   useEffect(() => {
-    setData([...infoState.objectArray]);
+    if (infoState && infoState.objectArray) {
+      setData([...infoState.objectArray]);
+    } else {
+      setData([]);
+    }
   }, [infoState.objectArray]);
 
   useEffect(() => {
