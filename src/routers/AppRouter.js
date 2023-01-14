@@ -57,7 +57,7 @@ const AppRouter = () => {
             navbarOffsetBreakpoint="sm"
             asideOffsetBreakpoint="sm"
             fixed
-            navbar={<NavMenu opened={opened} />}
+            navbar={<NavMenu opened={opened} setOpened={setOpened} />}
             header={
               <Header height={70} p="md" background={theme.colors.gray[6]}>
                 <div

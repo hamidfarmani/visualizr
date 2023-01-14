@@ -10,7 +10,7 @@ import {
 } from "tabler-icons-react";
 import { navStyles } from "../styles/navStyles";
 
-export const NavMenu = ({ opened }) => {
+export const NavMenu = ({ opened, setOpened }) => {
   const location = useLocation();
   const { classes } = navStyles();
 
@@ -29,6 +29,7 @@ export const NavMenu = ({ opened }) => {
           to="/dashboard"
           icon={<LayoutDashboard />}
           active={location.pathname === "/dashboard"}
+          onClick={() => setOpened(false)}
         />
       </Navbar.Section>
 
@@ -45,6 +46,7 @@ export const NavMenu = ({ opened }) => {
             to="/merge-sort"
             icon={<SquareHalf />}
             active={location.pathname === "/merge-sort"}
+            onClick={() => setOpened(false)}
           />
         </div>
       </Navbar.Section>
@@ -63,6 +65,7 @@ export const NavMenu = ({ opened }) => {
             to="/bubble-sort"
             icon={<ChartBubble />}
             active={location.pathname === "/bubble-sort"}
+            onClick={() => setOpened(false)}
           />
           <NavLink
             label="Insertion Sort"
@@ -70,6 +73,7 @@ export const NavMenu = ({ opened }) => {
             to="/insertion-sort"
             icon={<ColumnInsertRight />}
             active={location.pathname === "/insertion-sort"}
+            onClick={() => setOpened(false)}
           />
           <NavLink
             label="Selection Sort"
@@ -77,6 +81,7 @@ export const NavMenu = ({ opened }) => {
             to="/selection-sort"
             icon={<Select />}
             active={location.pathname === "/selection-sort"}
+            onClick={() => setOpened(false)}
           />
         </div>
       </Navbar.Section>
@@ -89,6 +94,7 @@ export const NavMenu = ({ opened }) => {
           target="_blank"
           variant="outline"
           icon={<ExternalLink />}
+          onClick={() => setOpened(false)}
         />
       </Navbar.Section>
     </Navbar>
