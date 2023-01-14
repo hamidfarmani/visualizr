@@ -12,7 +12,7 @@ const MergeSortPage = () => {
   const [steps, setSteps] = useState([]);
 
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 70);
+  const interval = useInterval(() => setStep((s) => s + 1), 120);
 
   useEffect(() => {
     if (infoState && infoState.objectArray) {
