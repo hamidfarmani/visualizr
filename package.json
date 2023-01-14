@@ -4,6 +4,7 @@
   "homepage": "http://hamidfarmani.github.io/visualizr",
   "private": true,
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.8.3",
     "@mantine/hooks": "^5.8.3",
