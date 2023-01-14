@@ -13,7 +13,7 @@ const BubbleSortPage = () => {
   const [steps, setSteps] = useState([]);
 
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 10);
+  const interval = useInterval(() => setStep((s) => s + 1), 60);
 
   useEffect(() => {
     correctPlaces = 0;
