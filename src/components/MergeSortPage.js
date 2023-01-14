@@ -6,13 +6,17 @@ import { mergeSortAlgorithm } from "../utils/MergeSort";
 import Visualize from "./Visualizr";
 
 const MergeSortPage = () => {
-  const { infoState } = useAppContext();
+  const { infoState, generateNewArray } = useAppContext();
 
   const [data, setData] = useState([]);
   const [steps, setSteps] = useState([]);
 
   const [step, setStep] = useState(0);
   const interval = useInterval(() => setStep((s) => s + 1), 120);
+
+  useEffect(() => {
+    setData(generateNewArray(20));
+  }, []);
 
   useEffect(() => {
     if (infoState && infoState.objectArray) {
