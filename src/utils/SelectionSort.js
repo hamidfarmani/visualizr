@@ -13,16 +13,25 @@ function selectionSort(array, steps) {
     minIndex = currentIndex;
 
     for (let i = currentIndex + 1; i < array.length; i++) {
-      steps.push([minIndex, i]);
-      steps.push([minIndex, i]);
+      steps.push({ type: "COMPARE", left: minIndex, right: i });
 
       if (array[i] < array[minIndex]) {
         minIndex = i;
+        steps.push({ type: "MIN_CHANGE", minIndex: minIndex });
       }
-      steps.push([currentIndex, array[minIndex]]);
     }
+
+    steps.push({
+      type: "SWAP",
+      left: currentIndex,
+      right: minIndex,
+      leftValue: array[currentIndex],
+      rightValue: array[minIndex],
+    });
+
     swap(array, currentIndex, minIndex);
 
+    steps.push({ type: "CHECKED", itemIndex: currentIndex });
     currentIndex++;
   }
 
