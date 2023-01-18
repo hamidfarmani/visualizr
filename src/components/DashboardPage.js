@@ -1,5 +1,6 @@
 import {
   Accordion,
+  List,
   Paper,
   ScrollArea,
   Space,
@@ -7,6 +8,7 @@ import {
   Title,
 } from "@mantine/core";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
   const [value, setValue] = useState([]);
@@ -22,6 +24,45 @@ const DashboardPage = () => {
           specific order relationship, such as numerical order. This operation
           is one of the most important and widespread in computer science.
         </Text>
+        <Space h="sm" />
+
+        <Text>Some examples are: </Text>
+        <List>
+          <List.Item>
+            <Text td="underline" c="blue" component={Link} to={"/merge-sort"}>
+              Merge sort (Try it)
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>Quick sort</Text>
+          </List.Item>
+          <List.Item>
+            <Text td="underline" c="blue" component={Link} to={"/bubble-sort"}>
+              Bubble sort (Try it)
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text
+              td="underline"
+              c="blue"
+              component={Link}
+              to={"/insertion-sort"}
+            >
+              Insertion sort (Try it)
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text
+              td="underline"
+              c="blue"
+              component={Link}
+              to={"/selection-sort"}
+            >
+              Selection sort (Try it)
+            </Text>
+          </List.Item>
+        </List>
+
         <Space h="sm" />
 
         <Text>
