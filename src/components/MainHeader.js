@@ -1,27 +1,17 @@
 import {
   ActionIcon,
   Anchor,
-  Container,
   Group,
   MediaQuery,
-  Slider,
-  Text,
   Title,
   Tooltip,
 } from "@mantine/core";
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Check, MoonStars, Sun } from "tabler-icons-react";
-import { useAppContext } from "../context/AppContext";
+import { MoonStars, Sun } from "tabler-icons-react";
+import { ArraySize } from "./ArraySize";
 
 const MainHeader = ({ dark, toggleColorScheme }) => {
-  const [arraySize, setArraySize] = useState(20);
-  const infoState = useAppContext();
   const location = useLocation();
-
-  const onGenerateClick = () => {
-    infoState.generateNewArray(arraySize);
-  };
 
   return (
     <Group position="apart" style={{ width: "100%" }}>
@@ -35,21 +25,7 @@ const MainHeader = ({ dark, toggleColorScheme }) => {
 
       {location && location.pathname.includes("sort") && (
         <Group position="center">
-          <Container size={400}>
-            <Text>Select the size of array</Text>
-            <Slider
-              min={4}
-              max={100}
-              radius="lg"
-              value={arraySize}
-              onChange={setArraySize}
-              onChangeEnd={setArraySize}
-            />
-          </Container>
-
-          <ActionIcon variant="subtle" onClick={() => onGenerateClick()}>
-            <Check size={20} />
-          </ActionIcon>
+          <ArraySize />
         </Group>
       )}
 

@@ -1,8 +1,9 @@
-import { Button } from "@mantine/core";
+import { Button, Center } from "@mantine/core";
 import { useInterval } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { mergeSortAlgorithm } from "../utils/MergeSort";
+import { SortButton } from "./SortButton";
 import Visualize from "./Visualizr";
 
 const MergeSortPage = () => {
@@ -10,9 +11,9 @@ const MergeSortPage = () => {
 
   const [data, setData] = useState([]);
   const [steps, setSteps] = useState([]);
-
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 120);
+
+  const interval = useInterval(() => setStep((s) => s + 1), infoState.speed);
 
   useEffect(() => {
     setData(generateNewArray(20));
@@ -66,9 +67,9 @@ const MergeSortPage = () => {
   return (
     <>
       <Visualize data={data} />
-      <Button fullWidth onClick={doMergeSort}>
-        Sort
-      </Button>
+      <Center pt={15}>
+        <SortButton handleOnclick={doMergeSort} />
+      </Center>
     </>
   );
 };

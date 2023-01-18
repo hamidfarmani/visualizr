@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 export const InfoContext = createContext({
+  speed: 100,
   array: [],
   objectArray: [],
   generateNewArray: () => {},
@@ -12,6 +13,9 @@ function infoReducer(state, action) {
       return action.payload;
 
     case "SetArray":
+      return action.payload;
+
+    case "SetSpeed":
       return action.payload;
 
     default:
@@ -34,6 +38,7 @@ export const AppContext = ({ children }) => {
     dispatch({
       type: "GenerateNewArray",
       payload: {
+        ...infoState,
         array: array,
         objectArray: objectArray,
       },
@@ -47,14 +52,27 @@ export const AppContext = ({ children }) => {
     dispatch({
       type: "SetArray",
       payload: {
+        ...infoState,
         array: modifiedArray,
         objectArray: objectArray,
       },
     });
   };
 
+  const setSpeed = (newSpeed) => {
+    dispatch({
+      type: "SetSpeed",
+      payload: {
+        ...infoState,
+        speed: newSpeed,
+      },
+    });
+  };
+
   return (
-    <InfoContext.Provider value={{ infoState, generateNewArray, setArray }}>
+    <InfoContext.Provider
+      value={{ infoState, generateNewArray, setArray, setSpeed }}
+    >
       {children}
     </InfoContext.Provider>
   );

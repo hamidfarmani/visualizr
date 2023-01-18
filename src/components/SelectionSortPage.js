@@ -1,8 +1,10 @@
-import { Button } from "@mantine/core";
+import { Center } from "@mantine/core";
 import { useInterval } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
+import { updateColors } from "../utils/CommonUtils";
 import { selectionSortAlgorithm } from "../utils/SelectionSort";
+import { SortButton } from "./SortButton";
 import Visualize from "./Visualizr";
 
 let correctPlaces = 0;
@@ -11,9 +13,9 @@ const SelectionSortPage = () => {
 
   const [data, setData] = useState([]);
   const [steps, setSteps] = useState([]);
-
   const [step, setStep] = useState(0);
-  const interval = useInterval(() => setStep((s) => s + 1), 120);
+
+  const interval = useInterval(() => setStep((s) => s + 1), infoState.speed);
 
   useEffect(() => {
     setData(generateNewArray(20));
@@ -52,19 +54,6 @@ const SelectionSortPage = () => {
       setData(nextData);
     }
   }, [step]);
-
-  const updateColors = (array, newColor, startIndex, endIndex) => {
-    if (!array) return;
-    const updatedObjects = array.slice(startIndex, endIndex + 1).map((item) => {
-      return { ...item, color: newColor };
-    });
-
-    return [
-      ...array.slice(0, startIndex),
-      ...updatedObjects,
-      ...array.slice(endIndex + 1),
-    ];
-  };
 
   const doSelectionSort = () => {
     setData([...infoState.objectArray]);
@@ -108,9 +97,9 @@ const SelectionSortPage = () => {
   return (
     <>
       <Visualize data={data} />
-      <Button fullWidth onClick={doSelectionSort}>
-        Sort
-      </Button>
+      <Center pt={15}>
+        <SortButton handleOnclick={doSelectionSort} />
+      </Center>
     </>
   );
 };
